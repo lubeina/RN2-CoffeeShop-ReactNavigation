@@ -1,5 +1,6 @@
 import React from "react";
 import { ImageBackground, View } from "react-native";
+import { withNavigation } from "react-navigation";
 
 // NativeBase Components
 import { ListItem, Card, CardItem, Thumbnail, Text, Left } from "native-base";
@@ -7,8 +8,11 @@ import { ListItem, Card, CardItem, Thumbnail, Text, Left } from "native-base";
 // Style
 import styles from "./styles";
 
-const CoffeeItem = ({ coffeeshop }) => {
-  const handlePress = () => alert("Pressed");
+const CoffeeItem = ({ coffeeshop, navigation }) => {
+  const handlePress = () =>
+    navigation.navigate("CoffeeDetail", {
+      coffeeshopID: coffeeshop.id
+    });
 
   return (
     <ImageBackground source={coffeeshop.background} style={styles.background}>
@@ -34,4 +38,4 @@ const CoffeeItem = ({ coffeeshop }) => {
   );
 };
 
-export default CoffeeItem;
+export default withNavigation(CoffeeItem);
